@@ -4,6 +4,169 @@
     margin: 0;
     padding:0;
     box-sizing: border-box;
+    /* border: 1px solid red; */
 }
 
 /* End of CSS Reset */
+
+body {
+    font-family: 'Share Tech Mono', monospace;
+    background-color: #E5FEB9;
+}
+
+/* Start of Calculator */
+.main-calc {
+    position: absolute;
+    height: 97%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#calc-body {
+    width: 480px;
+    height: 650px;
+
+    background: #63C5AE;
+    border: 5px solid #000000;
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#calc-screen {
+    width: 380px;
+    height: 200px;
+    margin-top: 50px;
+
+    background: #BFFFCB;
+    border: 5px solid #000000;
+    border-radius: 30px;
+}
+
+#calc-buttons {
+    width: 380px;
+    height: 345px;
+    margin-bottom: 30px;
+
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+button {
+    border: 5px solid #000000;
+    border-radius: 20px;
+    
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 25px;
+}
+
+.btn-func {
+    width: 185px;
+    height: 60px;
+}
+
+.btn-num, .btn-operator {
+    width: 88px;
+    height: 60px;
+}
+
+#btn-clear {
+    background-color: #ED005A;
+    color: #ffffff;
+}
+
+#btn-delete {
+    background-color: #EBC929;
+}
+
+.btn-num {
+    background-color: #01CCDD;
+}
+
+.btn-operator {
+    background-color: #1D04AA;
+    color: #ffffff;
+}
+
+#btn-clear:hover {
+    background-color: #9e1248;
+    color: #ffffff;
+}
+
+#btn-delete:hover {
+    background-color: #ceab0e;
+}
+
+.btn-num:hover {
+    background-color: #06838f;
+}
+
+.btn-operator:hover {
+    background-color: #180585;
+    color: #ffffff;
+}
+/* End of Calculator */
+
+/* Start of Eyes */
+.calc-eyes {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 180px;
+    position: relative;
+    top: 50px;
+}
+
+#calc-eye-1, #calc-eye-2 {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+
+    background: #000000;
+}
+/* End of Eyes */
+
+/* Start of Shadow */
+.calc-shadow {
+    position: absolute;
+    z-index: -100;
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+#calc-body-shadow {
+    width: 500px;
+    height: 670px;
+
+    background: #5DA796;
+    border: 5px solid #000000;
+    border-radius: 60px 30px;
+}
+
+/* End of Shadow */
+
+/* Start of Footer */
+footer { 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3%;
+    width: 100%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    font-size: 14px;
+}
+/* End of Footer */
