@@ -21,7 +21,7 @@
     clearButton.addEventListener('click', clearAllScreens)
     deleteButton.addEventListener('click', deleteOne)
     decimalButton.addEventListener('click', addDecimal)
-    equalButton.addEventListener('click', testEvent)
+    equalButton.addEventListener('click', performOperation)
     
 
 /* Function Tester */
@@ -51,6 +51,10 @@ function returnEyes() {
 function emptyVariables() {
     firstNum = null;
     secondNum = null;
+}
+
+function emptyOperator() {
+    operator = null;
 }
 
 function clearAllScreens() {
@@ -88,5 +92,52 @@ function addDecimal() {
         calcScreenCurrent.textContent = `${newNumber}`
     } else {
         return
+    }
+}
+
+function isEmpty(number) {
+    if (number === null) {
+        return true
+    }
+}
+
+function displayError() {
+    calcScreenCurrent.textContent = `Division Error. Clearing screen in 5seconds` 
+    setTimeout(clearAllScreens, 5000)
+}
+
+function performOperation() {
+    let answer;
+    
+    secondNum = parseFloat(calcScreenCurrent.textContent)
+
+    switch (operator) {
+        case '+':
+            answer = firstNum + secondNum
+            calcScreenLast += " ="
+            calcScreenCurrent.textContent = `${answer}`
+        break;
+
+        case '-': 
+            answer = firstNum - secondNum
+            calcScreenLast += " ="
+            calcScreenCurrent.textContent = `${answer}`
+        break;
+
+        case '×': 
+            answer = firstNum * secondNum
+            calcScreenLast += " ="
+            calcScreenCurrent.textContent = `${answer}`
+        break;
+        
+        case '÷': 
+            if (secondNum === 0) {
+                return displayError()
+            } else {
+                answer = firstNum / secondNum
+                calcScreenLast += " ="
+                calcScreenCurrent.textContent = `${answer}`
+            }
+        break;
     }
 }
