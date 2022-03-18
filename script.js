@@ -27,3 +27,10 @@
 function testEvent(e) {
     console.log(e)
 }
+
+/* Global Variables */
+let firstNum = null;
+let secondNum = null;
+let operator = null;
+
+/* Functions */
