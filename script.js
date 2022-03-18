@@ -20,7 +20,7 @@
     operatorButtons.forEach(button => button.addEventListener('click', testEvent))
     clearButton.addEventListener('click', clearAllScreens)
     deleteButton.addEventListener('click', deleteOne)
-    decimalButton.addEventListener('click', testEvent)
+    decimalButton.addEventListener('click', addDecimal)
     equalButton.addEventListener('click', testEvent)
     
 
@@ -77,4 +77,16 @@ function addNumber() {
     let newNumber = currentNumber + this.textContent
     
     calcScreenCurrent.textContent = `${newNumber}`
+}
+
+function addDecimal() {
+    let currentNumber = calcScreenCurrent.textContent
+    let numberArray = currentNumber.split('')
+
+    if (!numberArray.includes('.')) {
+        let newNumber = currentNumber + this.textContent
+        calcScreenCurrent.textContent = `${newNumber}`
+    } else {
+        return
+    }
 }
