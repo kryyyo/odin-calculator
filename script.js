@@ -11,18 +11,18 @@
     const equalButton = document.querySelector('#btn-equals')
 
     // For the clicking animation and sound of buttons
-    const calcButtons = document.querySelectorAll('.calc-buttons')
-    const clickSound = document.querySelector('audio')
+    const calcButtons = document.querySelectorAll('#calc-buttons button')
 
 /* Event Listeners */
     //test only first
+    calcButtons.forEach(button => button.addEventListener('click', animateButton))
     numberButtons.forEach(button => button.addEventListener('click', testEvent))
     operatorButtons.forEach(button => button.addEventListener('click', testEvent))
-    clearButton.addEventListener('click', testEvent)
-    deleteButton.addEventListener('click', testEvent)
+    clearButton.addEventListener('click', clearAllScreens)
+    deleteButton.addEventListener('click', deleteOne)
     decimalButton.addEventListener('click', testEvent)
     equalButton.addEventListener('click', testEvent)
-
+    
 
 /* Function Tester */
 function testEvent(e) {
@@ -38,4 +38,29 @@ let operator = null;
 function animateButton() {
     this.setAttribute('style', 'filter: grayscale(50%)')
     setTimeout(() => this.removeAttribute('style', 'filter: grayscale(50%)'), 30)
+}
+
+function emptyVariables() {
+    firstNum = null;
+    secondNum = null;
+}
+
+function clearAllScreens() {
+    emptyVariables();
+
+    calcScreenLast.textContent = '';
+    calcScreenCurrent.textContent = '';
+}
+
+function deleteOne() {
+
+    let currentNumber = calcScreenCurrent.textContent
+    
+    let newNumber = currentNumber.slice(0, currentNumber.length - 1)
+
+    calcScreenCurrent.textContent = `${newNumber}`
+}
+
+function addNumber() {
+    
 }
