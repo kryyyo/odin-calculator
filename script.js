@@ -34,3 +34,11 @@ let secondNum = null;
 let operator = null;
 
 /* Functions */
+function animateButton() {
+    this.setAttribute('style', 'filter: grayscale(50%)')
+    setTimeout(() => this.removeAttribute('style', 'filter: grayscale(50%)'), 30)
+}
+
+function playSoundButton() {
+    
+}
