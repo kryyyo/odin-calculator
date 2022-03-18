@@ -12,6 +12,7 @@
 
     // For the clicking animation and sound of buttons
     const calcButtons = document.querySelectorAll('.calc-buttons')
+    const clickSound = document.querySelector('audio')
 
 /* Event Listeners */
     //test only first
@@ -37,8 +38,4 @@ let operator = null;
 function animateButton() {
     this.setAttribute('style', 'filter: grayscale(50%)')
     setTimeout(() => this.removeAttribute('style', 'filter: grayscale(50%)'), 30)
-}
-
-function playSoundButton() {
-    
 }
