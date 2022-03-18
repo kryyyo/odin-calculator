@@ -16,7 +16,7 @@
 /* Event Listeners */
     //test only first
     calcButtons.forEach(button => button.addEventListener('click', animateButton))
-    numberButtons.forEach(button => button.addEventListener('click', testEvent))
+    numberButtons.forEach(button => button.addEventListener('click', addNumber))
     operatorButtons.forEach(button => button.addEventListener('click', testEvent))
     clearButton.addEventListener('click', clearAllScreens)
     deleteButton.addEventListener('click', deleteOne)
@@ -40,6 +40,14 @@ function animateButton() {
     setTimeout(() => this.removeAttribute('style', 'filter: grayscale(50%)'), 30)
 }
 
+function deleteEyes() {
+    calcEyes.style.display = 'none';
+}
+
+function returnEyes() {
+    calcEyes.removeAttribute('style')
+}
+
 function emptyVariables() {
     firstNum = null;
     secondNum = null;
@@ -47,6 +55,7 @@ function emptyVariables() {
 
 function clearAllScreens() {
     emptyVariables();
+    returnEyes()
 
     calcScreenLast.textContent = '';
     calcScreenCurrent.textContent = '';
@@ -62,5 +71,10 @@ function deleteOne() {
 }
 
 function addNumber() {
+    deleteEyes()
+
+    let currentNumber = calcScreenCurrent.textContent
+    let newNumber = currentNumber + this.textContent
     
+    calcScreenCurrent.textContent = `${newNumber}`
 }
