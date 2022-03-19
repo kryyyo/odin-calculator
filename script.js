@@ -78,24 +78,35 @@ function addNumber() {
     deleteEyes()
 
     let currentNumber = calcScreenCurrent.textContent
-    let newNumber = currentNumber + this.textContent
-    
-    calcScreenCurrent.textContent = `${newNumber}`
-}
 
-function addDecimal() {
-    let currentNumber = calcScreenCurrent.textContent
-    let numberArray = currentNumber.split('')
-
-    if (currentNumber === '') {
-        let newNumber = '0' + this.textContent
-        calcScreenCurrent.textContent = `${newNumber}`
-    } else if (!numberArray.includes('.')) {
+    if (currentNumber.length < 14) {
         let newNumber = currentNumber + this.textContent
         calcScreenCurrent.textContent = `${newNumber}`
     } else {
         return
     }
+    
+}
+
+function addDecimal() {
+    let currentNumber = calcScreenCurrent.textContent
+
+    if (currentNumber.length < 14) {
+        let numberArray = currentNumber.split('')
+
+        if (currentNumber === '') {
+            let newNumber = '0' + this.textContent
+            calcScreenCurrent.textContent = `${newNumber}`
+        } else if (!numberArray.includes('.')) {
+            let newNumber = currentNumber + this.textContent
+            calcScreenCurrent.textContent = `${newNumber}`
+        } else {
+            return
+        }
+    } else {
+        return
+    }
+    
 }
 
 function isEmpty(number) {
