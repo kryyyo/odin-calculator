@@ -87,7 +87,7 @@ function addDecimal() {
     let currentNumber = calcScreenCurrent.textContent
     let numberArray = currentNumber.split('')
 
-    if {currentNumber === '') {
+    if (currentNumber === '') {
         let newNumber = '0' + this.textContent
         calcScreenCurrent.textContent = `${newNumber}`
     } else if (!numberArray.includes('.')) {
