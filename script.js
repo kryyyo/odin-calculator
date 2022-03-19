@@ -33,6 +33,7 @@ function testEvent(e) {
 let firstNum = null;
 let secondNum = null;
 let operator = null;
+let answer = null;
 
 /* Functions */
 function animateButton() {
@@ -90,7 +91,7 @@ function addNumber() {
 
 function addDecimal() {
     deleteEyes()
-    
+
     let currentNumber = calcScreenCurrent.textContent
 
     if (currentNumber.length < 14) {
@@ -123,7 +124,6 @@ function displayError() {
 }
 
 function performOperation() {
-    let answer;
     
     secondNum = parseFloat(calcScreenCurrent.textContent)
 
@@ -153,23 +153,29 @@ function performOperation() {
 }
 
 function addOperator() {
-    if (calcScreenCurrent.textContent < 1) {
-        return
-    } else if (isEmpty(firstNum)) {
-        firstNum = calcScreenCurrent.textContent
-        operator = this.textContent
-
-        calcScreenLast.textContent = `${firstNum} ${operator}`
-        calcScreenCurrent.textContent = '';
-        
-    } else {
-        if (isEmpty(secondNum)) {
+    if (isEmpty(firstNum)) {
+        if (calcScreenCurrent.textContent < 1) {
+            return
+        } else {
+            firstNum = parseFloat(calcScreenCurrent.textContent)
             operator = this.textContent
+
+            calcScreenLast.textContent = `${firstNum} ${operator}`
+            calcScreenCurrent.textContent = '';
+        }
+    } else {
+        if (calcScreenCurrent.textContent < 1) {
+            operator = this.textContent
+
             calcScreenLast.textContent = `${firstNum} ${operator}`
         } else {
+            secondNum = parseFloat(calcScreenCurrent.textContent)
+            console.log(secondNum)
+            
             performOperation() 
             firstNum = answer
-            
+            calcScreenCurrent.textContent = '';
+                
             operator = this.textContent
             calcScreenLast.textContent = `${firstNum} ${operator}`
 
