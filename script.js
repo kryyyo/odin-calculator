@@ -114,20 +114,14 @@ function performOperation() {
     switch (operator) {
         case '+':
             answer = firstNum + secondNum
-            calcScreenLast += " ="
-            calcScreenCurrent.textContent = `${answer}`
         break;
 
         case '-': 
             answer = firstNum - secondNum
-            calcScreenLast += " ="
-            calcScreenCurrent.textContent = `${answer}`
         break;
 
         case '×': 
             answer = firstNum * secondNum
-            calcScreenLast += " ="
-            calcScreenCurrent.textContent = `${answer}`
         break;
         
         case '÷': 
@@ -135,9 +129,43 @@ function performOperation() {
                 return displayError()
             } else {
                 answer = firstNum / secondNum
-                calcScreenLast += " ="
-                calcScreenCurrent.textContent = `${answer}`
             }
         break;
     }
+}
+
+function addOperator() {
+    if (calcScreenCurrent.textContent = '') {
+        return
+    }
+
+    if (isEmpty(firstNum)) {
+        firstNum = calcScreenCurrent.textContent
+        operator = this.textContent
+
+        calcScreenLast.textContent = `${firstNum} ${operator}`
+        calcScreenCurrent.textContent = '';
+        
+    } else {
+        if (isEmpty(secondNum)) {
+            operator = this.textContent
+            calcScreenLast.textContent = `${firstNum} ${operator}`
+        } else {
+            performOperation() 
+            firstNum = answer
+            
+            operator = this.textContent
+            calcScreenLast.textContent = `${firstNum} ${operator}`
+
+            secondNum = null
+        }
+    }
+}
+
+function getAnswer() {
+    performOperation()
+    calcScreenLast += " ="
+    calcScreenCurrent.textContent = `${answer}`
+    emptyOperator()
+    emptyVariables()
 }
