@@ -17,11 +17,11 @@
     //test only first
     calcButtons.forEach(button => button.addEventListener('click', animateButton))
     numberButtons.forEach(button => button.addEventListener('click', addNumber))
-    operatorButtons.forEach(button => button.addEventListener('click', testEvent))
+    operatorButtons.forEach(button => button.addEventListener('click', addOperator))
     clearButton.addEventListener('click', clearAllScreens)
     deleteButton.addEventListener('click', deleteOne)
     decimalButton.addEventListener('click', addDecimal)
-    equalButton.addEventListener('click', performOperation)
+    equalButton.addEventListener('click', getAnswer)
     
 
 /* Function Tester */
@@ -132,6 +132,8 @@ function performOperation() {
             }
         break;
     }
+
+    answer = Math.round(answer * 1000) / 1000
 }
 
 function addOperator() {
@@ -163,9 +165,14 @@ function addOperator() {
 }
 
 function getAnswer() {
-    performOperation()
-    calcScreenLast += " ="
-    calcScreenCurrent.textContent = `${answer}`
-    emptyOperator()
-    emptyVariables()
+    if (isEmpty(firstNum) || isEmpty(secondNum)){
+        return
+    } else {
+        performOperation()
+        calcScreenLast += " ="
+        calcScreenCurrent.textContent = `${answer}`
+        emptyOperator()
+        emptyVariables()
+    }
+   
 }
