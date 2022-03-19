@@ -89,6 +89,8 @@ function addNumber() {
 }
 
 function addDecimal() {
+    deleteEyes()
+    
     let currentNumber = calcScreenCurrent.textContent
 
     if (currentNumber.length < 14) {
@@ -151,11 +153,9 @@ function performOperation() {
 }
 
 function addOperator() {
-    if (calcScreenCurrent.textContent = '') {
+    if (calcScreenCurrent.textContent < 1) {
         return
-    }
-
-    if (isEmpty(firstNum)) {
+    } else if (isEmpty(firstNum)) {
         firstNum = calcScreenCurrent.textContent
         operator = this.textContent
 
