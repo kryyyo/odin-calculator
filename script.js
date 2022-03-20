@@ -185,14 +185,13 @@ function addOperator() {
 }
 
 function getAnswer() {
-    if (isEmpty(firstNum) || isEmpty(secondNum)){
+    if (isEmpty(firstNum)){
         return
     } else {
         performOperation()
-        calcScreenLast += " ="
+        calcScreenLast.textContent += ` ${secondNum} =`
         calcScreenCurrent.textContent = `${answer}`
         emptyOperator()
         emptyVariables()
     }
-   
 }
