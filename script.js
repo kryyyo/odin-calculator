@@ -14,7 +14,6 @@
     const calcButtons = document.querySelectorAll('#calc-buttons button')
 
 /* Event Listeners */
-    //test only first
     calcButtons.forEach(button => button.addEventListener('click', animateButton))
     numberButtons.forEach(button => button.addEventListener('click', addNumber))
     operatorButtons.forEach(button => button.addEventListener('click', addOperator))
@@ -22,11 +21,12 @@
     deleteButton.addEventListener('click', deleteOne)
     decimalButton.addEventListener('click', addDecimal)
     equalButton.addEventListener('click', getAnswer)
+    window.addEventListener('keydown', whatKey)
     
 
 /* Function Tester */
 function testEvent(e) {
-    console.log(e)
+    console.log(e.key)
 }
 
 /* Global Variables */
@@ -60,7 +60,8 @@ function emptyOperator() {
 
 function clearAllScreens() {
     emptyVariables();
-    returnEyes()
+    emptyOperator();
+    returnEyes();
 
     calcScreenLast.textContent = '';
     calcScreenCurrent.textContent = '';
@@ -75,13 +76,48 @@ function deleteOne() {
     calcScreenCurrent.textContent = `${newNumber}`
 }
 
-function addNumber() {
+function whatKey(e) {
+    e.preventDefault()
+    
+    if (e.key >= 0) {
+        addNumber(e)
+    }
+    
+    switch (e.key) {
+        case '.': 
+            addDecimal(e)
+            break;
+
+        case '+':
+        case '-':
+        case '*':
+        case '/':
+            addOperator(e)
+            break;
+
+        case '=':
+        case 'Enter':
+            getAnswer()
+            break;
+
+        case 'Backspace':
+            deleteOne()
+            break;
+        
+        case 'Escape':
+            clearAllScreens()
+            break;
+    } 
+}
+
+function addNumber(e) {
     deleteEyes()
 
     let currentNumber = calcScreenCurrent.textContent
+    let input = this.textContent || e.key
 
     if (currentNumber.length < 14) {
-        let newNumber = currentNumber + this.textContent
+        let newNumber = currentNumber + + input
         calcScreenCurrent.textContent = `${newNumber}`
     } else {
         return
@@ -89,19 +125,20 @@ function addNumber() {
     
 }
 
-function addDecimal() {
+function addDecimal(e) {
     deleteEyes()
 
     let currentNumber = calcScreenCurrent.textContent
+    let input = this.textContent || e.key
 
     if (currentNumber.length < 14) {
         let numberArray = currentNumber.split('')
 
         if (currentNumber === '') {
-            let newNumber = '0' + this.textContent
+            let newNumber = '0' + input
             calcScreenCurrent.textContent = `${newNumber}`
         } else if (!numberArray.includes('.')) {
-            let newNumber = currentNumber + this.textContent
+            let newNumber = currentNumber + input
             calcScreenCurrent.textContent = `${newNumber}`
         } else {
             return
@@ -136,11 +173,13 @@ function performOperation() {
             answer = firstNum - secondNum
         break;
 
-        case '×': 
+        case '×':
+        case '*':
             answer = firstNum * secondNum
         break;
         
         case '÷': 
+        case '/':
             if (secondNum === 0) {
                 return displayError()
             } else {
@@ -152,31 +191,35 @@ function performOperation() {
     answer = Math.round(answer * 1000) / 1000
 }
 
-function addOperator() {
+function addOperator(e) {
     if (isEmpty(firstNum)) {
         if (calcScreenCurrent.textContent < 1) {
             return
         } else {
             firstNum = parseFloat(calcScreenCurrent.textContent)
-            operator = this.textContent
+            operator = this.textContent || e.key
+
+            if (operator === '*') {
+                console.log(operator)
+            }
 
             calcScreenLast.textContent = `${firstNum} ${operator}`
             calcScreenCurrent.textContent = '';
         }
     } else {
         if (calcScreenCurrent.textContent < 1) {
-            operator = this.textContent
+            operator = this.textContent || e.key
 
             calcScreenLast.textContent = `${firstNum} ${operator}`
         } else {
             secondNum = parseFloat(calcScreenCurrent.textContent)
-            console.log(secondNum)
-            
+
             performOperation() 
-            firstNum = answer
+            firstNum = parseFloat(answer)
             calcScreenCurrent.textContent = '';
-                
-            operator = this.textContent
+
+            operator = this.textContent || e.key
+
             calcScreenLast.textContent = `${firstNum} ${operator}`
 
             secondNum = null
@@ -195,3 +238,4 @@ function getAnswer() {
         emptyVariables()
     }
 }
+
